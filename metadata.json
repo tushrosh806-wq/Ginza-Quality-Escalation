@@ -1,0 +1,7 @@
+{
+  "name": "Ginza Quality Escalation Center",
+  "description": "Monitor and manage quality defects across production units with role-based access control, automated reporting, and AI-powered defect analysis.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
