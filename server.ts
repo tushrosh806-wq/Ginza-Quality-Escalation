@@ -93,13 +93,39 @@ async function startServer() {
         });
       }
 
-      const emails = targetUnitHeads.map(p => p.email);
-      console.log('Target Emails:', emails);
+    const emails = targetUnitHeads.map(p => p.email);
+      
+      // Always include Rohit Sethia in the 'To' list
+      if (!emails.includes('rohit.sethia@ginzalimited.com')) {
+        emails.push('rohit.sethia@ginzalimited.com');
+      }
+      
+      console.log('Target Emails (To):', emails);
+
+      // Branch Head Mapping
+      const branchHeadMapping: Record<string, string> = {
+        'amit.korgaonkar@ginzalimited.com': 'vishal.ambhore@ginzalimited.com',
+        'shivginza123@gmail.com': 'sachin.bhosle@ginzalimited.com',
+        'rajesh.jain@ginzalimited.com': 'vishal.ambhore@ginzalimited.com',
+        'lalit.delhi@ginzalimited.com': 'vinay.chhajer@ginzalimited.com',
+        'ahmedabad@ginzalimited.com': 'ahmedabad@ginzalimited.com',
+        'ginzabala1985@gmail.com': 'murali.krishna@ginzalimited.com',
+        'tps@ginzalimited.com': 'murali.krishna@ginzalimited.com, tirupur@ginzalimited.com',
+        'anil.udhna@ginzalimted.com': 'piyush.baid@ginzalimited.com',
+        'mahesh.chandeliya@ginzalimited.com': 'mahesh.chandeliya@ginzalimited.com'
+      };
+
+      const ccEmails: string[] = [];
+      if (reporterEmail && branchHeadMapping[reporterEmail.toLowerCase()]) {
+        ccEmails.push(branchHeadMapping[reporterEmail.toLowerCase()]);
+        console.log(`CC added for Branch Head: ${branchHeadMapping[reporterEmail.toLowerCase()]}`);
+      }
 
       // 2. Send emails using Nodemailer
       const mailOptions = {
         from: `"${reporterName}" <${process.env.SMTP_USER}>`,
         to: emails.join(', '),
+        cc: ccEmails.join(', '),
         replyTo: reporterEmail,
         subject: `New Quality Escalation: ${caseId} - ${unit}`,
         html: `
