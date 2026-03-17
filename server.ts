@@ -105,6 +105,7 @@ async function startServer() {
       // Branch Head Mapping
       const branchHeadMapping: Record<string, string> = {
         'amit.korgaonkar@ginzalimited.com': 'vishal.ambhore@ginzalimited.com',
+        'tushpadavi1@gmail.com'  : 'mis.mumbai@ginzalimited.com',
         'shivginza123@gmail.com': 'sachin.bhosle@ginzalimited.com',
         'rajesh.jain@ginzalimited.com': 'vishal.ambhore@ginzalimited.com',
         'lalit.delhi@ginzalimited.com': 'vinay.chhajer@ginzalimited.com',
